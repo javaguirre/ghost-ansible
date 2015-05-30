@@ -1,0 +1,29 @@
+---
+
+# - name: Create ghost user
+# user: name={{ ghost_user }} createhome=no shell=/bin/nologin
+
+- name: Installing unzip
+  apt: name=unzip update_cache=yes
+
+- name: Create ghost install dir
+  file: path={{ ghost_install_dir }} state=directory owner={{ ghost_user }} group={{ ghost_user }}
+
+- name: Download ghost {{ ghost_version }}
+  get_url: url={{ ghost_zip_url }} dest=/tmp/ghost-{{ ghost_version }}.zip
+
+- name: Create ghost directory
+  file: path={{ ghost_install_dir }} state=directory
+
+- name: Extract ghost release
+  command: unzip -qod {{ ghost_install_dir }} /tmp/ghost-{{ ghost_version }}.zip
+
+- name: Update ownership of ghost dir
+  file: path={{ ghost_install_dir }} owner={{ ghost_user }} recurse=yes state=directory
+
+- name: Install node dependencies
+  npm: path={{ ghost_install_dir }} production=yes
+
+- name: Configure ghost
+  template: src=config.js.j2 dest={{ ghost_install_dir }}/config.js
+  notify: restart ghost

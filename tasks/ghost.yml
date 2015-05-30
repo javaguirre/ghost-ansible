@@ -1,0 +1,7 @@
+---
+
+- include: ghost-os.yml
+  tags: [ghost]
+
+- include: ghost-configure.yml
+  tags: [ghost]

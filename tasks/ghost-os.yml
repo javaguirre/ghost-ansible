@@ -1,0 +1,10 @@
+---
+
+- name: ghost-os | Setup Ghost service
+  template: src=etc/init/ghost.conf.j2 dest=/etc/init/ghost.conf
+  notify: restart ghost
+  tags: [ghost]
+
+- name: ghost-os | Ensure the Ghost service is started
+  service: name=ghost state=started enabled=yes
+  tags: [ghost]

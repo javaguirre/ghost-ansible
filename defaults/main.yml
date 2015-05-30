@@ -1,5 +1,25 @@
 ---
 
+# Roles
+ghost_enabled: true
+ghost_remove: false
+
+# Ghost service
+ghost_production: false
+ghost_version: '0.6.3'
 ghost_zip_url: "https://ghost.org/zip/ghost-latest.zip"
 ghost_user: ghost
 ghost_install_dir: /home/ghost
+
+# Ghost config.js
+ghost_production_url: 'http://example.com'
+ghost_production_host: '127.0.0.1'
+ghost_production_port: '2368'
+
+ghost_development_url: 'http://example.com'
+ghost_development_host: '127.0.0.1'
+ghost_development_port: '2368'
+
+# TODO Mail
+
+# TODO Database
