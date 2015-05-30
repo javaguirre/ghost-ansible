@@ -6,4 +6,5 @@ start on startup
 script
     cd {{ ghost_install_dir }}
     npm start {% if ghost_production %}--production{% endif %}
+
 end script
