@@ -12,14 +12,36 @@ ghost_user: ghost
 ghost_install_dir: /home/ghost
 
 # Ghost config.js
+# Production
 ghost_production_url: 'http://example.com'
 ghost_production_host: '127.0.0.1'
 ghost_production_port: '2368'
+ghost_production_mail:
+  transport: 'SMTP'
+  options:
+    service: 'Mailgun'
+    auth:
+      user: ''
+      pass: ''
+ghost_production_database:
+  client: 'sqlite3'
+  connection:
+    filename: "{{ ghost_install_dir }}/content/data/ghost.db"
+    debug: false
 
+# Development
 ghost_development_url: 'http://example.com'
 ghost_development_host: '127.0.0.1'
 ghost_development_port: '2368'
-
-# TODO Mail
-
-# TODO Database
+ghost_development_mail:
+  transport: 'SMTP'
+  options:
+    service: 'Mailgun'
+    auth:
+      user: ''
+      pass: ''
+ghost_development_database:
+  client: 'sqlite3'
+  connection:
+    filename: "{{ ghost_install_dir }}/content/data/ghost-dev.db"
+    debug: false

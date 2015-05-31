@@ -1,3 +1,22 @@
+{% macro as_dict(dictionary) -%}
+
+{ {%- for key, value in dictionary.iteritems() recursive %}
+    {%- if value is mapping %}
+
+    {{ key }}: {
+
+        {{ loop(value.iteritems()) }}
+
+    }{% if not loop.last %},{% endif %}
+
+    {%- else  %}
+        {{ key }}: '{{ value }}'{% if not loop.last %},{% endif %}
+
+    {%- endif %}
+{%- endfor %} }
+
+{%- endmacro %}
+
 // # Ghost Configuration
 // Setup your Ghost install for various environments
 // Documentation can be found at http://support.ghost.org/config/
@@ -11,23 +30,8 @@ config = {
     // Configure your URL and mail settings here
     production: {
         url: '{{ ghost_production_url }}',
-        mail: {
-            transport: 'SMTP',
-            options: {
-                service: 'Mailgun',
-                auth: {
-                    user: '', // mailgun username
-                    pass: ''  // mailgun password
-                }
-            }
-        },
-        database: {
-            client: 'sqlite3',
-            connection: {
-                filename: path.join(__dirname, '/content/data/ghost.db')
-            },
-            debug: false
-        },
+        mail: {{ as_dict(ghost_production_mail) }},
+        database: {{ as_dict(ghost_production_database) }},
 
         server: {
             // Host to be passed to node's `net.Server#listen()`
@@ -43,28 +47,9 @@ config = {
         // Change this to your Ghost blogs published URL.
         url: '{{ ghost_development_url }}',
 
-        // Example mail config
-        // Visit http://support.ghost.org/mail for instructions
-        // ```
-        //  mail: {
-        //      transport: 'SMTP',
-        //      options: {
-        //          service: 'Mailgun',
-        //          auth: {
-        //              user: '', // mailgun username
-        //              pass: ''  // mailgun password
-        //          }
-        //      }
-        //  },
-        // ```
+        mail: {{ as_dict(ghost_development_mail) }},
+        database: {{ as_dict(ghost_development_database) }},
 
-        database: {
-            client: 'sqlite3',
-            connection: {
-                filename: path.join(__dirname, '/content/data/ghost-dev.db')
-            },
-            debug: false
-        },
         server: {
             // Host to be passed to node's `net.Server#listen()`
             host: '{{ ghost_development_host }}',
