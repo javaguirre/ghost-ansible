@@ -1,7 +1,11 @@
 ---
 
-# - name: Create ghost user
-# user: name={{ ghost_user }} createhome=no shell=/bin/nologin
+- name: Create ghost user
+  user: |
+    name={{ ghost_user }}
+    createhome=yes
+    shell=/bin/nologin
+    state=present
 
 - name: Installing unzip
   apt: name=unzip update_cache=yes
