@@ -1,5 +1,7 @@
 # javaguirre.ghost
 
+[![Build Status](https://travis-ci.org/javaguirre/ghost-ansible.svg?branch=master)](https://travis-ci.org/javaguirre/ghost-ansible)
+
 Ansible role which manage [ghost](https://ghost.org/)
 
 ## Dependencies
