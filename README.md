@@ -2,15 +2,11 @@
 
 [![Build Status](https://travis-ci.org/javaguirre/ghost-ansible.svg?branch=master)](https://travis-ci.org/javaguirre/ghost-ansible)
 
-Ansible role which manage [ghost](https://ghost.org/)
+Ansible role managing [ghost](https://ghost.org/).
 
 ## Dependencies
 
-You could use Stouts.nginx for nginx configuration
-
-```bash
-ansible-galaxy install Stouts.nginx
-```
+I use `debops.nodejs` role as a dependency to install node, It's an external dependency.
 
 ## Variables
 
