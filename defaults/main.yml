@@ -6,10 +6,9 @@ ghost_remove: false
 
 # Ghost service
 ghost_production: false
-ghost_version: '0.6.3'
 ghost_zip_url: "https://ghost.org/zip/ghost-latest.zip"
 ghost_user: ghost
-ghost_install_dir: /home/ghost
+ghost_install_dir: /home/{{ ghost_user }}
 
 # Ghost config.js
 # Production
