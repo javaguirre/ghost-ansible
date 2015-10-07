@@ -1,7 +1,7 @@
 ---
-- name: Ghost | Restart ghost
+- name: restart ghost
   service: name=ghost state=restarted
 
-- name: Ghost | Ensure the Ghost service is started
+- name: ensure the Ghost service is started
   service: name=ghost state=started enabled=yes
   tags: [ghost]
