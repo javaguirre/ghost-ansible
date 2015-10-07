@@ -4,7 +4,7 @@
   user: |
     name={{ ghost_user }}
     createhome=yes
-    shell=/bin/nologin
+    shell=/bin/bash
     state=present
 
 - name: Installing unzip
