@@ -1,7 +1,10 @@
 ---
 
 - include: ghost-os.yml
-  tags: [ghost]
 
 - include: ghost-configure.yml
-  tags: [ghost]
+
+- include: ghost-theme.yml
+  when: ghost_custom_theme
+  tags:
+    - ghost-theme

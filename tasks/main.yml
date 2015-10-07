@@ -2,8 +2,6 @@
 
 - include: ghost.yml
   when: ghost_enabled
-  tags: [ghost]
 
 - include: remove.yml
   when: ghost_remove
-  tags: [ghost]

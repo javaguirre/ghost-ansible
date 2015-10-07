@@ -1,0 +1,14 @@
+---
+
+- name: Ghost | Installing git
+  apt: name=git update_cache=yes
+
+- name: Ghost | Check if the theme exists
+  stat: |
+    path="{{ ghost_custom_theme_path }}"
+
+- name: Ghost | Update custom theme
+  git: |
+    repo="{{ ghost_custom_theme_repo }}"
+    dest="{{ ghost_custom_theme_path }}"
+    version="{{ ghost_custom_theme_branch }}"

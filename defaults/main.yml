@@ -11,6 +11,13 @@ ghost_zip_url: "https://ghost.org/zip/ghost-latest.zip"
 ghost_user: ghost
 ghost_install_dir: /home/{{ ghost_user }}
 
+# Custom Theme
+ghost_custom_theme: false
+ghost_custom_theme_name: false
+ghost_custom_theme_repo: false
+ghost_custom_theme_branch: "master"
+ghost_custom_theme_path: "{{ ghost_install_dir }}/content/themes/{{ ghost_custom_theme_name }}"
+
 # Ghost config.js
 # Production
 ghost_production_url: 'http://example.com'
