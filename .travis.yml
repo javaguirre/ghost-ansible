@@ -22,5 +22,9 @@ script:
   # First run
   - ansible-playbook -i inventory test.yml --connection=local --sudo
 
-  #- netstat -utan | grep '127.0.0.1:2368' | grep LISTEN || exit 1
-  #- netstat -utan | grep '0.0.0.0:80' | grep LISTEN || exit 1
+  # Idempotence
+  - >
+    ansible-playbook -i inventory test.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)

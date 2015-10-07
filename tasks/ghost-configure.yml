@@ -1,33 +1,40 @@
 ---
 
-- name: Create ghost user
+- name: Ghost | Create ghost user
   user: |
     name={{ ghost_user }}
     createhome=yes
     shell=/bin/bash
     state=present
 
-- name: Installing unzip
+- name: Ghost | Installing unzip
   apt: name=unzip update_cache=yes
 
-- name: Create ghost install dir
+- name: Ghost | Create ghost install dir
   file: path={{ ghost_install_dir }} state=directory owner={{ ghost_user }} group={{ ghost_user }}
 
-- name: Download ghost
+- name: Ghost | Download ghost
   get_url: url={{ ghost_zip_url }} dest=/tmp/ghost.zip
 
-- name: Create ghost directory
+- name: Ghost | Create ghost directory
   file: path={{ ghost_install_dir }} state=directory
 
-- name: Extract ghost release
+- name: Ghost | Check if there is a Ghost release
+  stat: |
+    path="{{ ghost_install_dir }}/index.js"
+  register: ghost_release_path
+
+- name: Ghost | Extract ghost release
   command: unzip -qod {{ ghost_install_dir }} /tmp/ghost.zip
+  when: upgrade_ghost or not ghost_release_path.stat.exists
 
-- name: Update ownership of ghost dir
+- name: Ghost | Update ownership of ghost dir
   file: path={{ ghost_install_dir }} owner={{ ghost_user }} recurse=yes state=directory
+  when: upgrade_ghost or not ghost_release_path.stat.exists
 
-- name: Install node dependencies
+- name: Ghost | Install node dependencies
   npm: path={{ ghost_install_dir }} production=yes
 
-- name: Configure ghost
+- name: Ghost | Configure ghost
   template: src=config.js.j2 dest={{ ghost_install_dir }}/config.js
   notify: restart ghost
