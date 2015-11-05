@@ -17,6 +17,8 @@ ghost_custom_theme_name: false
 ghost_custom_theme_repo: false
 ghost_custom_theme_branch: "master"
 ghost_custom_theme_path: "{{ ghost_install_dir }}/content/themes/{{ ghost_custom_theme_name }}"
+ghost_custom_theme_accept_hostkey: false
+ghost_custom_theme_key_file: None
 
 # Ghost config.js
 # Production
