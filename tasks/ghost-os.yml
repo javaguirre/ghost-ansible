@@ -4,3 +4,9 @@
   template: src=etc/init/ghost.conf.j2 dest=/etc/init/ghost.conf
   notify: restart ghost
   tags: [ghost]
+
+- name: Ghost | Setup Ghost service (for systemd users)
+  template: src=etc/init/ghost.systemd.conf.j2 dest=/etc/systemd/system/ghost.service mode=755
+  notify: restart ghost
+  tags: [ghost]
+  when: ansible_distribution == 'Ubuntu' and ( ansible_distribution_release == 'vivid' or ansible_distribution_release == 'wily' )
