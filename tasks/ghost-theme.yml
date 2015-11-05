@@ -12,3 +12,4 @@
     repo="{{ ghost_custom_theme_repo }}"
     dest="{{ ghost_custom_theme_path }}"
     version="{{ ghost_custom_theme_branch }}"
+    accept_hostkey=yes
