@@ -25,7 +25,9 @@
   register: ghost_release_path
 
 - name: Ghost | Extract ghost release
-  command: unzip -qod {{ ghost_install_dir }} /tmp/ghost.zip
+  unarchive: |
+    src=/tmp/ghost.zip
+    dest={{ ghost_install_dir }}
   when: upgrade_ghost or not ghost_release_path.stat.exists
 
 - name: Ghost | Update ownership of ghost dir
