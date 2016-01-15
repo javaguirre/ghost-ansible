@@ -87,7 +87,7 @@ Your main ansible would look like:
 ```yaml
 - hosts: all
   remote_user: myuser
-  sudo: true
+  become: true
 
   vars_files:
     - vars/nginx.yml
