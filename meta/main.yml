@@ -7,7 +7,7 @@ galaxy_info:
   author: javaguirre
   description: Manage Ghost (installation, configuration)
   license: MIT
-  min_ansible_version: 1.6
+  min_ansible_version: 1.9
   platforms:
     - name: Ubuntu
   versions:

@@ -8,6 +8,12 @@ Ansible role managing [ghost](https://ghost.org/).
 
 I use `debops.nodejs` role as a dependency to install node, It's an external dependency.
 
+## Versions
+
+If you have **Ansible < 1.9.0** you can use the release [v.0.5.0](https://github.com/javaguirre/ghost-ansible/tree/v0.5.0).
+
+For **Ansible >= 1.9.0** you can use either [v1.0.0](https://github.com/javaguirre/ghost-ansible/tree/v1.0.0) or [master](https://github.com/javaguirre/ghost-ansible/tree/master).
+
 ## Variables
 
 List of variables and default values:
