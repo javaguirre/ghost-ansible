@@ -14,3 +14,4 @@
     version="{{ ghost_custom_theme_branch }}"
     accept_hostkey="{{ ghost_custom_theme_accept_hostkey }}"
     key_file="{{ ghost_custom_theme_key_file }}"
+  notify: restart ghost
