@@ -10,6 +10,13 @@
 - name: Ghost | Installing unzip
   apt: name=unzip update_cache=yes
 
+- name: Ghost | Create ghost install dir
+  file: |
+    path={{ ghost_install_dir }}
+    state=directory
+    owner={{ ghost_user }}
+    group={{ ghost_user }}
+
 - name: Ghost | Download and extract
   unarchive: |
     src={{ ghost_zip_url }}
